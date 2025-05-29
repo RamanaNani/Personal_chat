@@ -5,9 +5,13 @@ from pydantic import BaseModel
 from qa_engine import QAEngine
 from vector_store import VectorStore
 from document_processor import DocumentProcessor
+from dotenv import load_dotenv
 import os
 import time
 import logging
+
+# Load environment variables
+load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -28,10 +32,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize components
-vector_store = VectorStore()
-doc_processor = DocumentProcessor()
-qa_engine = QAEngine()
+# Initialize components lazily to avoid startup errors
+vector_store = None
+doc_processor = None
+qa_engine = None
+
+def get_components():
+    """Initialize components if not already initialized"""
+    global vector_store, doc_processor, qa_engine
+    if vector_store is None:
+        vector_store = VectorStore()
+        doc_processor = DocumentProcessor()
+        qa_engine = QAEngine()
+    return vector_store, doc_processor, qa_engine
 
 class Question(BaseModel):
     text: str
@@ -69,6 +82,9 @@ async def ask_question(question: Question):
         start_time = time.time()
         logger.info(f"Processing question: {question.text}")
 
+        # Get initialized components
+        vector_store, doc_processor, qa_engine = get_components()
+
         # Process documents if the collection is empty
         if vector_store.is_empty():
             logger.info("Vector store is empty, processing documents...")
@@ -102,6 +118,9 @@ async def update_documents():
     try:
         start_time = time.time()
         logger.info("Starting document update")
+        
+        # Get initialized components
+        vector_store, doc_processor, qa_engine = get_components()
         
         vector_store.clear()
         chunks, metadatas = doc_processor.process_documents()

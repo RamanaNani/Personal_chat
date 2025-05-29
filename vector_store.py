@@ -1,5 +1,4 @@
 import chromadb
-from chromadb.utils import embedding_functions
 from sentence_transformers import SentenceTransformer
 import uuid
 from typing import List, Dict, Any
@@ -16,27 +15,30 @@ class VectorStore:
         self.client = chromadb.Client()
         self.collection_name = collection_name
         self.sentence_transformer = SentenceTransformer('all-MiniLM-L6-v2')
-        self.embedding_function = embedding_functions.SentenceTransformerEmbeddingFunction(
-            model_name='all-MiniLM-L6-v2'
-        )
+        
+        # Create collection without embedding function to avoid OpenAI conflicts
         self.collection = self.client.get_or_create_collection(
-            name=collection_name,
-            embedding_function=self.embedding_function
+            name=collection_name
         )
         logger.info("Vector store initialized")
 
     def add_documents(self, documents: List[str], metadatas: List[Dict[str, Any]]) -> None:
         """Add documents to the vector store."""
         try:
+            # Generate embeddings manually
+            embeddings = self.sentence_transformer.encode(documents).tolist()
+            
             # Process documents in smaller batches
             batch_size = 100
             for i in range(0, len(documents), batch_size):
                 batch_docs = documents[i:i + batch_size]
                 batch_metas = metadatas[i:i + batch_size]
+                batch_embeddings = embeddings[i:i + batch_size]
                 ids = [str(uuid.uuid4()) for _ in batch_docs]
                 self.collection.add(
                     documents=batch_docs,
                     metadatas=batch_metas,
+                    embeddings=batch_embeddings,
                     ids=ids
                 )
             logger.info(f"Added {len(documents)} documents to vector store")
@@ -49,8 +51,11 @@ class VectorStore:
         """Search for relevant documents with caching."""
         try:
             logger.info(f"Searching for query: {query}")
+            # Generate query embedding manually
+            query_embedding = self.sentence_transformer.encode([query]).tolist()[0]
+            
             results = self.collection.query(
-                query_texts=[query],
+                query_embeddings=[query_embedding],
                 n_results=n_results
             )
             logger.info(f"Found {len(results['documents'][0])} results")
@@ -66,8 +71,7 @@ class VectorStore:
             self.client.delete_collection(self.collection_name)
             # Create a new empty collection
             self.collection = self.client.create_collection(
-                name=self.collection_name,
-                embedding_function=self.embedding_function
+                name=self.collection_name
             )
             # Clear the search cache
             self.search.cache_clear()
@@ -77,8 +81,7 @@ class VectorStore:
             # If deletion fails, try to create a new collection with a different name
             self.collection_name = f"{self.collection_name}_{uuid.uuid4().hex[:8]}"
             self.collection = self.client.create_collection(
-                name=self.collection_name,
-                embedding_function=self.embedding_function
+                name=self.collection_name
             )
             logger.info(f"Created new collection: {self.collection_name}")
 

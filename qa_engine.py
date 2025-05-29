@@ -1,5 +1,5 @@
 import os
-import openai
+from openai import OpenAI
 from typing import Dict, Any
 import logging
 
@@ -13,9 +13,7 @@ class QAEngine:
         self.api_key = api_key or os.getenv('OPENAI_API_KEY')
         if not self.api_key:
             raise ValueError("OpenAI API key not found")
-        openai.api_key = self.api_key
-        # Set timeout for API calls
-        openai.timeout = 20  # Reduced timeout to 20 seconds
+        self.client = OpenAI(api_key=self.api_key)
 
     def prepare_context(self, search_results: Dict[str, Any]) -> str:
         """Prepare context from search results."""
@@ -44,7 +42,7 @@ class QAEngine:
 
         try:
             logger.info(f"Making API call for question: {question[:50]}...")
-            response = openai.ChatCompletion.create(
+            response = self.client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=[
                     {
@@ -58,14 +56,13 @@ class QAEngine:
                 ],
                 temperature=0.5,  # Reduced for more focused responses
                 max_tokens=150,   # Reduced for faster responses
-                timeout=20        # Reduced timeout
             )
             answer = response.choices[0].message.content
             logger.info("Successfully received API response")
             return answer
-        except openai.error.Timeout:
-            logger.error("OpenAI API request timed out")
-            return "The request took too long to process. Please try again with a more specific question."
         except Exception as e:
+            if "timeout" in str(e).lower():
+                logger.error("OpenAI API request timed out")
+                return "The request took too long to process. Please try again with a more specific question."
             logger.error(f"Error getting answer: {str(e)}")
             return f"Error getting answer: {str(e)}" 
