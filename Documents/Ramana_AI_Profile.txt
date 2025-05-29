@@ -1,0 +1,95 @@
+Full Name: Venkata Ramana Reddy Duggempudi
+Preferred Name: Ramana
+
+Contact Info:
+- Email: ramanareddy1098@outlook.com
+- Phone: 716-970-9622
+- Location: New York, United States
+- LinkedIn: linkedin.com/in/ramanareddy
+- GitHub: github.com/ramanareddy
+
+Educational Background:
+- Master's in Artificial Intelligence, University at Buffalo
+- Relevant Courses: Machine Learning, Deep Learning, NLP, Computer Vision, Image Processing, Reinforcement Learning, Algorithms of Analysis
+
+Professional Summary:
+Ramana is a highly motivated AI & Machine Learning professional with a strong academic foundation and a hands-on portfolio. With a passion for building intelligent systems, Ramana has contributed to healthcare, finance, and business automation through LLMs, neural networks, and multimodal data processing.
+
+Technical Skills:
+- Languages: Python, JavaScript, Java, MATLAB, SQL
+- Libraries/Frameworks: PyTorch, TensorFlow, Keras, Scikit-learn, Hugging Face, LangChain
+- Tools: Docker, FastAPI, Git, Azure, MongoDB, Vercel, Cursor IDE
+- AI Capabilities: LLMs, GANs, CNNs, Transformers, RAG, VLMs, Agentic AI, Reinforcement Learning
+- Data Tools: Pandas, NumPy, OpenCV, Spark, ETL pipelines, Tableau
+- DevOps: GitHub Actions, Azure Pipelines, Azure App Service, Redis, Pinecone
+
+Research & Experience:
+- Research Assistant, University at Buffalo under Prof. Murali Ramnathan
+  - Building a judge system for validating outputs in clinical trial reports using LLMs
+  - Tasks include medical claim entailment, multi-agent orchestration, and hallucination detection
+
+- Machine Learning Intern, Order Appetit
+  - Built a multi-agent chatbot using CrewAI for querying MongoDB and responding to stakeholder queries
+  - Used RAG + vector search + OpenAI APIs
+
+- AI Intern, Motorage Automotive
+  - Deployed AI-driven Vehicle Health Monitoring System
+  - Used CNN for image diagnostics and LSTM for sensor data, reducing maintenance cost by 25%
+
+Projects:
+- Bone Fracture Detection System:
+  - Multi-class classification with object detection (YOLO, DETR, Faster R-CNN)
+  - Evaluated with mAP metrics, handled DICOM image formats
+
+- LLM HealthSense:
+  - Ensemble of MedBERT, Longformer, and MedRoBERTa
+  - Validates doctor statements against clinical trial reports
+
+- Obesity Risk Predictor:
+  - Multi-class classification with 7 obesity levels
+  - Used neural nets and traditional ML (XGBoost, Random Forests)
+
+- Credit Risk Analysis:
+  - Home Credit Default Risk dataset from Kaggle
+  - Emphasized explainability with SHAP, integrated optional GenAI modules
+
+- Portfolio Chatbot:
+  - Hosted on Vercel, integrated with FastAPI backend
+  - Uses user embeddings, project links, and document summarization
+
+- Personal Assistant Voice Agent (Jarvis-like):
+  - Uses Whisper for STT, OpenAI for intent parsing, tool agents for calendar/email
+
+AI Tools & Frameworks:
+- CrewAI, LangGraph, AgnoFramework for agent orchestration
+- Azure OpenAI, Claude, FinBERT, bge embeddings for RAG
+- FastAPI for backend services, Vercel V0 for frontend UI
+- Redis, MongoDB for memory management
+
+Core Strengths:
+- Strong grasp of ML theory: regularization, optimization, model selection, loss functions
+- Experienced in deep learning: CNNs, LSTMs, Transformers
+- Solid foundation in NLP and Retrieval-Augmented Generation (RAG)
+- Skilled at pipeline design: from preprocessing to deployment & monitoring
+- Effective communicator with a focus on explainability and business impact
+
+Soft Skills:
+- Fast learner, self-driven, research-oriented
+- Strong documentation and presentation abilities
+- Team collaboration and leadership in cross-functional projects
+
+Career Objective:
+Seeking opportunities to contribute as an Applied ML Scientist or Research Engineer where I can bridge the gap between business goals and machine intelligence using responsible AI systems and robust pipelines.
+
+Interview Prep:
+- Familiar with confusion matrix, precision-recall, data imbalance handling
+- Experienced with model evaluation: AUC, SHAP, LIME, LASSO, cross-validation
+- Knowledge of time series, generative AI trends, cloud tools (Azure)
+- Can explain chatbot frameworks, agentic systems, and prompt engineering
+
+Recent Interests:
+- Multi-agent orchestration with tool use and judge agents
+- Hybrid chatbot systems using LLM + RAG + memory
+- Evaluation of agentic frameworks using grounding, consistency, and tool success rate
+
+This document can be used to seed any HR-focused Q&A chatbot about Ramana’s background, experiences, and strengths.

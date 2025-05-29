@@ -1,0 +1,24 @@
+{
+  "projects": [
+    {
+      "name": "LLMs in Health Science",
+      "description": "Fine-tuned MedBERT, MedRoBERTa, and Longformer to develop a language model, assisting doctors in obtaining secondary opinion and making decisions more clearly based on health reports. Optimized an ensemble model with logistic regression, achieving Faithfulness (50%) and Consistency (55%) metrics for enhanced reliability. Secured 14th place on CodaLab by employing advanced fine-tuning strategies to optimize model effectiveness.",
+      "github_link": "https://github.com/RamanaNani/LLMs-in-Health-Science"
+    },
+    {
+      "name": "Bone Fracture Detection",
+      "description": "Implemented a deep learning pipeline to identify 6 fracture types in X-ray images, achieving 20.75% mean Average Precision (mAP) on 4,000+ images, surpassing benchmark performance (20.6% mAP). Enhanced model generalization through dataset augmentation and applied state-of-the-art detection models, including Detection Transformers, YOLO, and Faster R-CNN, reducing the model loss to 0.68.",
+      "github_link": "https://github.com/RamanaNani/Fracture-Detection"
+    },
+    {
+      "name": "Obesity Prediction",
+      "description": "Created a model to classify obesity into seven categories using feature engineering and feature selection. Neural networks achieved 95% accuracy as compared to other Machine Learning models. Developed basic UI by using Flask which is user friendly.",
+      "github_link": "https://github.com/RamanaNani/Obesity-Prediction"
+    },
+    {
+      "name": "Order Appetit",
+      "description": "Engineered an NLP driven chatbot utilizing Retrieval Augmented Generation (RAG) to streamline MongoDB querying, providing stakeholders with real-time insights. Developed a modular multi-agent system using CrewAI to streamline query generation, analyze the data and get actionable insights for user friendly interaction. Corrected over 10,000 product naming inconsistencies using semantic similarity models, improving data accuracy by 95% and boosting trustability in system-generated analytics. Analyzed actionable insights across 500+ restaurants, uncovering performance metrics, user behavior patterns, and order trends to drive data-driven strategic decisions.",
+      "github_link": "https://github.com/iqbal-sk/Order-Appetit"
+    }
+  ]
+} 
